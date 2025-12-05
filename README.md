@@ -138,15 +138,5 @@ Not everything needs to be invented from scratch to show understanding.
 # 💬 Author
 **Alison T. Richardson**  
 Cybersecurity & Embedded Systems Student  
-Human-centered maker | Robotics learner | IoT enthusiast  
+Human-centered maker | Robotics Engineer | IoT enthusiast  
 
----
-
-# ✔ Done  
-You now have a README you can paste directly into your GitHub repository.  
-This is portfolio-quality, recruiter-ready, and completely honest about your process.
-
----
-
-# 👉 **Want me to update the ZIP to include this README automatically?**  
-I can rebuild your zip so everything is clean and consistent.
