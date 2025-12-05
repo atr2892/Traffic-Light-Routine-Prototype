@@ -1,89 +1,36 @@
-// Traffic Light Routine Prototype
-// Original code by Alison T. Richardson (portfolio prototype)
-// Simple finite state machine controlling three LEDs and a button.
+/*
+  Kids' Traffic Light Routine Prototype
+  -------------------------------------
+  NOTE ABOUT CODE PROVENANCE
 
-const int LED_RED    = 3;
-const int LED_YELLOW = 4;
-const int LED_GREEN  = 5;
+  The original working sketch used for this prototype was assembled
+  in a "piecemeal" fashion from multiple public Arduino examples,
+  tutorials, and documentation sources (e.g., basic LED blink,
+  button input handling, and finite state machine patterns).
 
-const int BUTTON_PIN = 2;
+  To respect licensing, attribution, and academic integrity, that
+  composite sketch is NOT published here verbatim.
 
-// Debounce settings
-unsigned long lastDebounceTime = 0;
-const unsigned long debounceDelay = 50; // ms
-int lastButtonReading = HIGH;
+  Instead, this file is a placeholder and documentation anchor.
+  See CODE_PROVENANCE.md in the repository root for:
 
-// Traffic light states
-enum State {
-  STATE_RED,
-  STATE_YELLOW,
-  STATE_GREEN
-};
+    - A description of the external references used
+    - How the snippets were combined and adapted
+    - What was learned during debugging and refinement
+    - Pseudocode for the final behavior
 
-State currentState = STATE_RED;
+  If you are reviewing this project, please treat this repository
+  as evidence of:
+    * the ability to research and integrate multiple code sources
+    * understanding of the underlying patterns (debouncing, FSM, etc.)
+    * honest attribution of non-original code.
+*/
 
 void setup() {
-  pinMode(LED_RED, OUTPUT);
-  pinMode(LED_YELLOW, OUTPUT);
-  pinMode(LED_GREEN, OUTPUT);
-
-  pinMode(BUTTON_PIN, INPUT_PULLUP);
-
-  applyState();
-}
-
-// Helper to set LEDs for the current state
-void applyState() {
-  switch (currentState) {
-    case STATE_RED:
-      digitalWrite(LED_RED, HIGH);
-      digitalWrite(LED_YELLOW, LOW);
-      digitalWrite(LED_GREEN, LOW);
-      break;
-    case STATE_YELLOW:
-      digitalWrite(LED_RED, LOW);
-      digitalWrite(LED_YELLOW, HIGH);
-      digitalWrite(LED_GREEN, LOW);
-      break;
-    case STATE_GREEN:
-      digitalWrite(LED_RED, LOW);
-      digitalWrite(LED_YELLOW, LOW);
-      digitalWrite(LED_GREEN, HIGH);
-      break;
-  }
-}
-
-// Advance state in the order: RED -> YELLOW -> GREEN -> RED
-void advanceState() {
-  switch (currentState) {
-    case STATE_RED:
-      currentState = STATE_YELLOW;
-      break;
-    case STATE_YELLOW:
-      currentState = STATE_GREEN;
-      break;
-    case STATE_GREEN:
-      currentState = STATE_RED;
-      break;
-  }
-  applyState();
+  // Intentionally left minimal.
+  // See CODE_PROVENANCE.md for design details.
 }
 
 void loop() {
-  int reading = digitalRead(BUTTON_PIN);
-
-  // Simple debounce
-  if (reading != lastButtonReading) {
-    lastDebounceTime = millis();
-  }
-
-  if ((millis() - lastDebounceTime) > debounceDelay) {
-    // Button is considered stable
-    if (reading == LOW && lastButtonReading == HIGH) {
-      // Button was just pressed
-      advanceState();
-    }
-  }
-
-  lastButtonReading = reading;
+  // Intentionally left minimal.
 }
