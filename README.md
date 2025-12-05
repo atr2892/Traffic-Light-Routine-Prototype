@@ -1,8 +1,4 @@
 <p align="center">
-  <img src="assets/traffic_light_logo.png" width="160" alt="Project Logo"/>
-</p>
-
-<p align="center">
   <img src="assets/traffic_light_github_banner.png" width="100%" alt="Project Banner"/>
 </p>
 
