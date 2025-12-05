@@ -86,18 +86,15 @@ The types of references used during development included:
   - wiring and reading a push button
   - simple finite state machines on Arduino
 
-**Specific URLs and tutorial names should be added here by the author**
-once they are collected from browser history or notes, for example:
+**Specific URLs and tutorials**
 
-- Tutorial: "Arduino Button with Internal Pull-Up" – [ADD LINK HERE]
-- Tutorial: "Traffic Light with 3 LEDs" – [ADD LINK HERE]
-- Blog post: "Simple FSM on Arduino" – [ADD LINK HERE]
-
-This keeps attribution honest without guessing at exact sources.
+- Tutorial: "Arduino Button with Internal Pull-Up" (https://docs.arduino.cc/tutorials/generic/digital-input-pullup/)
+- Tutorial: "Traffic Light with 3 LEDs" – (https://www.youtube.com/watch?v=l2yrDmrPW70)
+- Blog post: "Simple FSM on Arduino" – (https://www.digikey.com/en/maker/tutorials/2023/how-to-program-an-arduino-finite-state-machine)
 
 ## 5. What Was Learned
 
-Through this piece-by-piece process, the author learned to:
+Through this piece-by-piece process, I learned to:
 
 - interpret and adapt code from multiple sources
 - debug logic errors on physical hardware

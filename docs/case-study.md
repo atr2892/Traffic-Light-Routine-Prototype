@@ -75,3 +75,4 @@ Evening mapping is similar but swaps in pajamas, toy tidy‑up, and bedtime stor
 - Add a parent dashboard for logging "green light" streaks
 - Explore secure update patterns (firmware signing, over‑the‑air updates)
 - Integrate into a larger home‑health / readiness dashboard for my robotics capstone.
+- Add game mode option for classic red light, green light game (the inspiration for this project)
