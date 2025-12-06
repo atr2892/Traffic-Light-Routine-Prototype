@@ -1,78 +1,179 @@
-# Case Study – Kids' Traffic Light Routine Prototype
+Case Study – Kids’ Traffic Light Routine Prototype
 
-## 1. Problem
+A human-centered embedded-systems project for behavioral routines
 
-School mornings and bedtime routines were chaotic:
-- Lots of verbal reminders
-- Meltdowns when kids felt rushed
-- Hard to know if "we're actually ready" or just *almost* ready
+1. Problem
 
-I wanted a **non‑verbal, visual system** that:
-- worked for young kids (pre‑readers)
-- supported ADHD brains with clear states
-- could eventually integrate into a larger smart‑home / robotics system.
+School mornings and bedtime routines in my household were often chaotic:
 
-## 2. Concept
+Too many verbal reminders
 
-Use a **toy traffic light lamp** as a physical indicator of readiness:
+Kids feeling rushed, overwhelmed, or unsure of what comes next
 
-- **Red** – core tasks incomplete  
-- **Yellow** – almost ready, quick checks remaining  
-- **Green** – completely ready, time for fun or heading out  
+Difficulty distinguishing "almost ready" from "actually ready"
 
-Kids can help move the light from red → yellow → green, reinforcing ownership and positive routines.
+I needed a non-verbal, visual routine system that:
 
-## 3. Hardware Overview
+Works for pre-reading children
 
-- Off‑the‑shelf battery‑powered traffic light lamp (3x LEDs: red, yellow, green)
-- Original design: AA battery pack + simple cycling controller
-- My modifications (depending on version):
-  - Option A: Replace AA batteries with a **5 V USB power input**
-  - Option B: Add a **rechargeable 18650 cell + TP4056 charging module**
-  - Optional: Replace internal controller with **Arduino Nano / ESP32** for programmable logic
+Supports ADHD-friendly clarity, transitions, and predictability
 
-I deliberately kept all work on the **low‑voltage side** and did not open or modify any mains‑voltage adapters.
+Can eventually integrate into a broader smart-home or secure-robotics ecosystem
 
-## 4. Firmware Design
+2. Concept
 
-The firmware here assumes:
+Repurpose a toy traffic light lamp into a tangible readiness indicator:
 
-- 3 LED channels wired to digital pins on an Arduino‑class board  
-- Optional push button so the kids can step the state forward themselves  
+🔴 Red — Tasks Not Started / Core Tasks Missing
 
-Core logic:
+🟡 Yellow — Nearly Ready / Quick Checks Remaining
 
-- Track a `state` variable (`RED`, `YELLOW`, `GREEN`)
-- Listen for:
-  - a **button press** (kid interaction), or
-  - an **external signal** (e.g., from a task‑tracking app later)
-- Update the LEDs to match the state
+🟢 Green — Fully Ready / Free Time or Time to Leave
 
-See [`code/main.ino`](code/main.ino) for the current implementation.
+Children participate by advancing the state from Red → Yellow → Green, giving them ownership, structure, and positive reinforcement.
+The light becomes a predictable emotional anchor and routine guide.
 
-## 5. UX / Routine Mapping
+3. Hardware Overview
 
-Example morning mapping:
+A retail traffic-light toy became the foundation. The original device included:
 
-- **Red** – brush teeth, bathroom, clothes, hair, shoes
-- **Yellow** – backpack, water bottle, jacket, quick room check
-- **Green** – free play, music, leave for school
+3 discrete LEDs (red, yellow, green)
 
-Evening mapping is similar but swaps in pajamas, toy tidy‑up, and bedtime story.
+A simple cycling controller
 
-## 6. What I Learned
+A 2xAA battery power supply
 
-- How to reason about existing toy electronics and decide whether to:
-  - keep the built‑in controller and simulate button presses, or
-  - bypass it and drive the LEDs directly
-- How to design around **kid‑friendly states** instead of purely technical ones
-- The value of **small, visual cues** for emotional regulation and routine adherence
-- How this kind of prototype could tie into a broader **IoT / secure robotics** project later.
+My hardware modifications explored several configurations:
 
-## 7. Future Work
+Option A — USB-Powered Mod
 
-- Integrate with an ESP32 and simple HTTP / MQTT API
-- Add a parent dashboard for logging "green light" streaks
-- Explore secure update patterns (firmware signing, over‑the‑air updates)
-- Integrate into a larger home‑health / readiness dashboard for my robotics capstone.
-- Add game mode option for classic red light, green light game (the inspiration for this project)
+Removed the AA battery pack
+
+Added a 5 V USB input for stable power
+
+Retained low-voltage safety (no mains modifications)
+
+Option B — Rechargeable Mod
+
+Integrated a TP4056 charging module
+
+Added an 18650 lithium cell for rechargeable operation
+
+Added protection circuitry to ensure safe low-voltage management
+
+Option C — Programmable Logic Mod
+
+Replaced the internal cycling controller with an Arduino Nano, ESP8266, or ESP32
+
+Enabled fully custom logic, state transitions, and external signal integration
+
+All modifications were done on the low-voltage side only, ensuring safety and clarity for future expansion.
+
+4. Firmware Design
+
+The firmware assumes:
+
+3 LED channels mapped to Arduino digital pins
+
+An optional pushbutton to allow kids to advance the state
+
+Core State Machine Logic
+
+Maintain a state variable (RED, YELLOW, GREEN)
+
+Detect:
+
+Button presses (kid interaction)
+
+External triggers (future app or dashboard events)
+
+Update LED outputs to reflect the current state
+
+Debounce and timing logic included for clean interactions
+
+Source reference:
+code/main.ino (modular and replaceable as the system evolves)
+
+5. UX / Routine Mapping
+Morning Routine Mapping
+
+Red → Brush teeth, bathroom, clothes, hair, shoes
+
+Yellow → Backpack check, water bottle, jacket, quick room tidy
+
+Green → Free play, morning music, ready to leave
+
+Evening Routine Mapping
+
+Red → Pajamas, bathroom, toys cleaned up
+
+Yellow → Prepare backpack for next day, quick sweep of room
+
+Green → Wind-down, bedtime story, lights out
+
+The system supports:
+
+Predictability
+
+Emotional regulation
+
+Independence
+
+It eliminates constant verbal prompting and replaces it with calm visual cues.
+
+6. What I Learned
+Technical Lessons
+
+Evaluating existing toy electronics to choose between:
+
+Simulating internal button presses
+
+Fully bypassing the controller
+
+Driving LEDs directly with microcontroller PWM outputs
+
+Designing minimal, kid-safe embedded systems
+
+Managing power constraints and component selection
+
+Building expandability into a prototype without over-engineering
+
+Human-Factors Lessons
+
+Kids respond better to visual cues than verbal reminders
+
+A single traffic-light metaphor is both intuitive and regulating
+
+Embedding emotional regulation into the design improves adoption
+
+Routine systems for kids parallel secure system states:
+predictable, observable, auditable
+
+This project also gave me ideas for future IoT and secure robotics integration—bridging my academic work with real family needs.
+
+7. Future Work
+
+Planned expansions include:
+
+Technical Features
+
+ESP32 upgrade with HTTP/MQTT API
+
+Integration with a parent mobile dashboard
+
+Over-the-air (OTA) secure firmware updates
+
+Behavior-based streak tracking (positive reinforcement)
+
+Smart-Home / Robotics Integration
+
+Connect to a larger home-readiness dashboard in my Robotics Capstone
+
+Add environmental sensors (temp, light, noise)
+
+Integrate with parental time-budget planning
+
+Fun Mode
+
+Add a Red Light / Green Light game mode
+(the inspiration behind the prototype)
