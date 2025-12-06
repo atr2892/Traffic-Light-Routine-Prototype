@@ -43,35 +43,9 @@ Instead, this repository focuses on:
 
 ## 3. High-Level Behavior (Pseudocode)
 
-The final firmware logic can be described as:
-
-```text
-state = RED
-
-loop:
-  read button
-
-  if button changes from NOT-PRESSED to PRESSED (debounced):
-      if state == RED:
-          state = YELLOW
-      else if state == YELLOW:
-          state = GREEN
-      else if state == GREEN:
-          state = RED
-
-  if state == RED:
-      turn RED LED on, others off
-  if state == YELLOW:
-      turn YELLOW LED on, others off
-  if state == GREEN:
-      turn GREEN LED on, others off
-```
-
-Additional behavior included:
-
-- using `INPUT_PULLUP` on the button pin
-- treating a LOW read as "pressed"
-- adding a small debounce delay to avoid flicker on press.
+The firmware manages LED states based on user interaction and routine progression.
+It cycles between red, yellow, and green modes according to the child’s completion of tasks.
+Timing logic, thresholds, and state transitions are intentionally omitted for intellectual property protection.
 
 ## 4. Example Types of Sources Used
 
