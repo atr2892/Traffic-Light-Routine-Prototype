@@ -1,57 +1,98 @@
-# Hardware Notes
+🔧 Hardware Notes (High-Level Summary)
 
-This prototype intentionally stays on the **low‑voltage** side of the circuit. Do not open or modify any mains‑voltage adapters.
+This prototype intentionally stays entirely on the low-voltage DC side of the system.
+No mains-voltage components were modified.
+All modifications involve simple, safe, consumer-grade electronics suitable for prototyping.
 
-## 1. Original Lamp
+1. Original Traffic Light Lamp
 
-Typical specs for similar lamps:
+Most commercially available toy-style traffic lights use:
 
-- Power: 2–3 × AA batteries (3–4.5 V total)
-- LEDs: integrated into a small PCB for red, yellow, and green
-- Control: a simple push‑button that cycles through modes
+Power: 2–3 × AA batteries (≈3–4.5 V DC)
 
-## 2. Option A – USB Power (Replace AA Batteries)
+Light source: Red, Yellow, and Green LEDs mounted on a compact PCB
 
-If the lamp uses 3 × AA (4.5 V), it can usually be powered from 5 V USB with a small series resistor or a buck converter adjusted to ~4.5 V.
+Built-in controller: A basic push-button cycle mode (ON → FLASH → OFF)
 
-Wiring (conceptual):
+For this prototype, the lamp housing and LED assemblies were repurposed while keeping all work on the low-voltage side.
 
-- Remove the AA batteries
-- Identify battery positive (+) and negative (–)
-- Connect:
-  - USB +5 V (red wire) → battery +
-  - USB GND (black wire) → battery –
+2. Option A — USB Power Replacement (Non-Destructive, Low-Voltage)
 
-## 3. Option B – Rechargeable 18650 + TP4056
+For prototypes requiring stable, continuous power, AA batteries can be replaced by a 5 V USB supply, provided that the lamp’s circuitry is compatible or adjusted.
 
-Components:
+High-Level Approach (Conceptual Only)
 
-- 1 × 18650 lithium cell
-- 1 × 18650 holder
-- 1 × TP4056 charging/protection board (with USB input)
+Remove or bypass the AA battery holders
 
-Wiring:
+Identify the lamp’s positive (+) and negative (–) terminals
 
-- Holder + → TP4056 BAT+
-- Holder – → TP4056 BAT–
-- Lamp + → TP4056 OUT+
-- Lamp – → TP4056 OUT–
+Connect:
 
-Charging: plug a USB cable into the TP4056. The board manages charge and basic protection.
+USB +5 V → lamp positive
 
-## 4. Option C – Full Microcontroller Control
+USB GND → lamp negative
 
-If the original controller is removed:
+Note: Some lamps require a small voltage adjustment (e.g., resistor or buck converter) if originally designed for 4.5 V.
 
-- Connect each LED (or LED segment) to:
-  - a digital output pin via a current‑limiting resistor, or
-  - a small N‑channel MOSFET if the LED board draws more current.
+3. Option B — Rechargeable System (18650 Cell + TP4056 Module)
 
-Example mapping (Arduino Nano):
+For a rechargeable prototype, a standard protected lithium charging module can be used.
 
-- Red LED → D3
-- Yellow LED → D4
-- Green LED → D5
-- Button input → D2 (with pull‑up)
+Components
 
-See the wiring notes in `diagrams/wiring-notes.md`.
+18650 lithium-ion battery (in a secured holder)
+
+TP4056 charging/protection board (5 V USB input)
+
+Conceptual Wiring
+
+Battery holder + → TP4056 BAT+
+
+Battery holder – → TP4056 BAT–
+
+Lamp power leads → TP4056 OUT+ / OUT–
+
+This provides charging, basic protection, and a clean rechargeable power system.
+
+4. Option C — Full Microcontroller Integration (ESP32 / Arduino Variant)
+
+For programmable control, the original cycling PCB can be bypassed and LEDs driven from digital output pins via appropriate protection components.
+
+Conceptual Features
+
+Microcontroller drives the RED / YELLOW / GREEN LED channels
+
+Button input for user-controlled state changes
+
+Optional Wi-Fi/Bluetooth for task synchronization (not included in the stock firmware here)
+
+Example Pin Mapping (High-Level Only)
+
+Red LED → Digital Output
+
+Yellow LED → Digital Output
+
+Green LED → Digital Output
+
+Button Input → Digital Input (with internal pull-up enabled)
+
+Notes
+
+Exact resistor values, current calculations, and LED driving circuits have been intentionally omitted for IP protection and patent preparation.
+
+Full circuit disclosure will be included only in the provisional patent submission.
+
+5. Safety Notes
+
+No mains voltage was handled or modified at any point.
+
+All modifications were made on the 3–5 V DC side, safe for prototyping.
+
+All exposed wires were insulated, and the internal space of the lamp housing was reinforced to prevent accidental shorts.
+
+6. Additional Documentation
+
+Additional conceptual wiring notes are provided in:
+diagrams/wiring-notes.md
+
+Detailed implementation diagrams will be included exclusively in the provisional patent filing.
